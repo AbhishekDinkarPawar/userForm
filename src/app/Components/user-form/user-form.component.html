@@ -1,0 +1,123 @@
+<div class="main-container d-flex justify-content-center bordered ">
+    <div class="container2 bordered shadow-lg">
+        <div class="backgroun_img">
+        </div>
+        <form [formGroup]="userForm" class="example-form" (ngSubmit)="SaveUserDetails()">
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>FIRST NAME</mat-label>
+                        <input matInput placeholder="FIRST NAME" formControlName="firstName">
+                        <mat-error *ngIf="userForm.controls['firstName'].touched">
+                            <span *ngIf="userForm.controls['firstName'].errors?.['required']">First Name is
+                                required</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-6">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>LAST NAME</mat-label>
+                        <input matInput formControlName="lastName" placeholder="LAST NAME" value="">
+                        <mat-error *ngIf="userForm.controls['lastName'].touched">
+                            <span *ngIf="userForm.controls['lastName'].errors?.['required']">Last Name is
+                                required</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-12">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>USERNAME</mat-label>
+                        <input matInput formControlName="userName" placeholder="USERNAME" value="">
+                        <mat-error *ngIf="userForm.controls['userName'].touched">
+                            <span *ngIf="userForm.controls['userName'].errors?.['required']">User Name is
+                                required</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>EMAIL</mat-label>
+                        <input matInput formControlName="email" placeholder="EMAIL" value="">
+                        <mat-error *ngIf="userForm.controls['email'].touched">
+                            <span *ngIf="userForm.controls['email'].errors?.['required']">Email is
+                                required</span>
+                            <span *ngIf="userForm.controls['email'].errors?.['pattern']">Email is
+                                not proper</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <mat-form-field>
+                        <mat-label>Country Code</mat-label>
+                        <mat-select formControlName="countryCode">
+                            <mat-option value="91">91</mat-option>                            
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-error *ngIf="userForm.controls['countryCode'].touched">
+                        <span *ngIf="userForm.controls['countryCode'].errors?.['required']">First Name is
+                            required</span>
+                    </mat-error>
+                </div>
+                <div class="col-6">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>PH. NUMBER</mat-label>
+                        <input matInput formControlName="phoneNumber" placeholder="PH. NUMBER" value="">
+                        <mat-error *ngIf="userForm.controls['phoneNumber'].touched">
+                            <span *ngIf="userForm.controls['phoneNumber'].errors?.['pattern']">Number is
+                                not proper</span>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>PASSWORD</mat-label>
+                        <input [(ngModel)]="confirmObj.password" matInput formControlName="password"
+                            placeholder="PASSWORD" value="">
+                        <mat-error *ngIf="userForm.controls['password'].touched">
+                            <span *ngIf="userForm.controls['password'].errors?.['required']">Password is
+                                required</span>
+
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>CONFIRM PASSWORD</mat-label>
+                        <input [(ngModel)]="confirmObj.confirmPassword" (input)="checkPassword()" matInput formControlName="confirmPassword"
+                            placeholder="Confirm Password" value="">
+                        <mat-error *ngIf="userForm.controls['confirmPassword'].touched">
+                            <span *ngIf="userForm.controls['confirmPassword'].errors?.['required']">Confirm Password is
+                                required</span>
+                            </mat-error>
+                        </mat-form-field>
+                        <span class="text-danger" *ngIf="this.confirmObj.errorShow">{{confirmObj.errorShow}}</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <button class="btn btn-md btn-success" (click)="SaveUserDetails()" [disabled]="userForm.invalid"
+                        width="200px">Submit</button>
+                </div>
+                <div class="col-4"></div>
+            </div>
+
+        </form>
+    </div>
+</div>
